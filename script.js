@@ -41,6 +41,32 @@ window.addEventListener("scroll", function () {
     }
 });
 
+// Active section indicator
+const sections = ['home', 'about', 'publications', 'honors', 'projects', 'education', 'featured', 'contact'];
+const navLinks = document.querySelectorAll('nav ul li a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 50 && rect.bottom >= 50) {
+                current = section;
+            }
+        }
+    });
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (current == 'about' && link.getAttribute('href') === '#home') {
+            link.classList.add('active');
+        }
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+        }
+    });
+});
+
 // Make sure the navbar starts as transparent
 document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.querySelector(".navbar");

@@ -30,9 +30,9 @@
     --shadow-subtle: 0 4px 15px rgba(0, 0, 0, 0.3);
 
     /* Transitions */
-    --transition-standard: all 0.3s ease;
-    --transition-fast: all 0.2s ease;
-    --transition-slow: all 0.4s ease;
+    --transition-standard: all 0.3s ease-in-out;
+    --transition-fast: all 0.2s ease-in-out;
+    --transition-slow: all 0.4s ease-in-out;
 
     /* Spacing */
     --spacing-xs: 0.5vw;
@@ -42,13 +42,13 @@
     --spacing-xl: 4vw;
     --spacing-xxl: 5vw;
 
-    /* Font sizes */
-    --font-xs: 0.6vw;
-    --font-sm: 0.8vw;
-    --font-md: 1vw;
-    --font-lg: 1.2vw;
-    --font-xl: 1.5vw;
-    --font-xxl: 2.5vw;
+    /* Font sizes - Using rem for better mobile scaling */
+    --font-xs: clamp(0.75rem, 1.5vw, 0.9rem);
+    --font-sm: clamp(0.875rem, 1.8vw, 1rem);
+    --font-md: clamp(1rem, 2vw, 1rem);
+    --font-lg: clamp(1.125rem, 2.5vw, 1.125rem);
+    --font-xl: clamp(1.3rem, 3vw, 1.3rem);
+    --font-xxl: clamp(2rem, 5vw, 3rem);
 
     /* Border radius */
     --radius-sm: 0.5vw;
@@ -157,24 +157,25 @@ nav ul li a {
     color: var(--text-secondary);
     font-size: var(--font-md);
     font-weight: 400;
-    /* font spacing */
     letter-spacing: 0.03em;
     text-transform: uppercase;
     text-decoration: none;
-    /* letter-spacing: 0.05em; */
     border-radius: 5px;
-    /* border-bottom: 0.5vw solid transparent; */
-    transition: var(--transition-standard);
     display: inline-block;
     padding: 0.35vw 0.7vw;
+    transition: var(--transition-standard);
 }
 
 nav ul li a:hover {
     cursor: pointer;
     color: var(--text-dark);
     background-color: var(--primary-accent);
-    /* border-bottom: 0.2vw solid var(--border-accent); */
-    /* text-shadow: 0 0 10px var(--primary-accent-dim); */
+    transform: translateY(-1px);
+}
+
+nav ul li a.active {
+    color: var(--text-dark);
+    background-color: var(--primary-accent);
     transform: translateY(-1px);
 }
 
@@ -885,7 +886,7 @@ span {
 .publication-card:hover {
     border-color: var(--border-accent);
     box-shadow: var(--shadow-glow);
-    transform: translateY(-3px);
+    transform: translateY(-1px);
 }
 
 .publication-details h4 {
@@ -947,7 +948,7 @@ span {
 .interest-card:hover {
     border-color: #64fca6;
     box-shadow: 0 6px 20px rgba(100, 252, 166, 0.2);
-    transform: translateY(-5px);
+    transform: translateY(-1px);
 }
 
 .interest-icon {
@@ -1089,5 +1090,455 @@ span {
         font-size: 6vw;
         bottom: 4vw;
         right: 4vw;
+    }
+}
+
+/* ===== ENHANCED MOBILE RESPONSIVENESS ===== */
+@media screen and (max-width: 768px) {
+
+    /* Logo adjustments */
+    .logo {
+        display: none;
+    }
+
+    body {
+        background: var(--bg-primary);
+    }
+
+    /* Navigation */
+    .navbar {
+        padding: 3vw 3% 3vw 0;
+    }
+
+    .navbar.transparent,
+    .navbar.solid {
+        padding: 3vw 3% 3vw 0;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li a {
+        margin: 1vw 1vw;
+        font-size: 3.2vw;
+        padding: 1.5vw 2.5vw;
+    }
+
+    /* Cover Section */
+    .cover {
+        height: fit-content;
+        padding: 20vw 0;
+    }
+
+    .cover-content {
+        top: 15%;
+        left: 5%;
+        right: 5%;
+        transform: none;
+        text-align: center;
+    }
+
+    .cover-content h1 {
+        font-size: 12vw;
+        white-space: normal;
+        animation: none;
+    }
+
+    .cover-content h3 {
+        font-size: 4.5vw;
+        margin: 3vw 0;
+    }
+
+    /* About Section */
+    .about {
+        padding-top: 8%;
+    }
+
+    .about-content {
+        flex-direction: column;
+        width: 85%;
+        align-items: center;
+    }
+
+    .about img {
+        height: auto;
+        width: 90%;
+        max-width: 400px;
+        border-width: 0.3vw;
+    }
+
+    .about-text {
+        margin-left: 0;
+        margin-top: 6vw;
+        text-align: center;
+    }
+
+    .about-text h2 {
+        font-size: 8vw;
+        margin-bottom: 5vw;
+    }
+
+    .about-text h6 {
+        font-size: 4.5vw;
+        margin-bottom: 4vw;
+    }
+
+    .about-text p {
+        font-size: 4vw;
+        line-height: 6vw;
+        margin-bottom: 4vw;
+        text-align: justify;
+    }
+
+    .cv {
+        display: inline-block;
+        font-size: 3.8vw;
+        padding: 2.5vw 5vw;
+        border-width: 0.3vw;
+        margin-top: 2vw;
+    }
+
+    /* Projects Section */
+    .section-title {
+        font-size: 7vw;
+        margin-top: 8vw;
+        margin-bottom: 5vw;
+    }
+
+    .section-title hr {
+        margin: 0 2vw;
+    }
+
+    .grid-container {
+        width: 90%;
+    }
+
+    .honors-container {
+        width: 90%;
+    }
+
+    .honor-card {
+        text-align: justify;
+    }
+
+    .project-card {
+        width: 100%;
+        min-height: auto;
+        margin: 4vw auto;
+        padding: 4vw;
+    }
+
+    .card-img {
+        height: auto;
+        width: 100%;
+    }
+
+    .project-details h4 {
+        font-size: 5.5vw;
+        padding-bottom: 3vw;
+    }
+
+    .project-details p {
+        font-size: 3.8vw;
+        line-height: 5.5vw;
+    }
+
+    .project-details a {
+        float: none;
+        display: inline-block;
+        font-size: 3.5vw;
+        padding: 2.5vw 4vw;
+        margin-top: 3vw;
+        margin-left: 0;
+        margin-right: 2vw;
+    }
+
+    .showall-btn {
+        font-size: 4vw;
+        padding: 3vw 6vw;
+        margin-top: 6vw;
+        margin-bottom: 6vw;
+    }
+
+    .showall-btn:hover {
+        padding: 3vw 8vw;
+    }
+
+    /* Featured Section */
+    .featured-container {
+        width: 90%;
+    }
+
+    .featured-card {
+        flex-direction: column;
+        min-height: auto;
+        padding: 4vw;
+        margin: 4vw 0;
+    }
+
+    .featured-card img {
+        width: 100%;
+        margin: 2vw 0;
+    }
+
+    #f2,
+    #f4 {
+        flex-direction: column;
+    }
+
+    .card-content {
+        padding: 3vw;
+    }
+
+    .featured-card h3 {
+        font-size: 5vw;
+        margin-bottom: 3vw;
+    }
+
+    .featured-card p {
+        font-size: 3.8vw;
+        line-height: 5.5vw;
+    }
+
+    .card-btn {
+        display: inline-block;
+        font-size: 3.5vw;
+        padding: 2.5vw 4vw;
+        margin-top: 3vw;
+        border-width: 0.2vw;
+    }
+
+    .more-featured {
+        font-size: 3.8vw;
+        padding: 3vw 5vw;
+        margin-top: 6vw;
+        margin-bottom: 6vw;
+    }
+
+    .more-featured:hover {
+        padding: 3vw 7vw;
+    }
+
+    /* Education Section */
+    .education {
+        margin: 8vw 0;
+    }
+
+    .edu-box {
+        flex-direction: column;
+        margin: 5vw auto;
+        align-items: center;
+    }
+
+    .edu-card {
+        width: 85%;
+        min-height: auto;
+        margin: 3vw 0;
+        padding: 4vw;
+    }
+
+    .edu-card h4 {
+        font-size: 5.5vw;
+        padding: 3vw;
+    }
+
+    .edu-card p {
+        font-size: 3.8vw;
+        line-height: 5.5vw;
+        padding: 2vw;
+    }
+
+    /* Publications Section */
+    .publications {
+        padding: 6vw 4%;
+    }
+
+    .publications .grid-container {
+        grid-template-columns: 1fr;
+        gap: 4vw;
+        width: 95%;
+    }
+
+    .publication-card {
+        padding: 4vw;
+    }
+
+    .publication-details h4 {
+        font-size: 5vw;
+        margin-bottom: 3vw;
+    }
+
+    .publication-meta .date {
+        font-size: 3.8vw;
+    }
+
+    .publication-meta .conference {
+        font-size: 3.5vw;
+        line-height: 5vw;
+    }
+
+    .publication-details p {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    /* Honors & Awards Section */
+    .honors {
+        padding: 6vw 4%;
+    }
+
+    .honors-container {
+        gap: 4vw;
+        margin-top: 4vw;
+    }
+
+    .honor-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 4vw;
+    }
+
+    .honor-icon {
+        font-size: 10vw;
+        margin-right: 0;
+        margin-bottom: 3vw;
+    }
+
+    .honor-content h4 {
+        font-size: 5vw;
+        margin-bottom: 2vw;
+    }
+
+    .honor-date {
+        font-size: 3.8vw;
+        margin-bottom: 3vw;
+    }
+
+    .honor-content p {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    /* Research Interests Section */
+    .interests {
+        padding: 6vw 4%;
+    }
+
+    .interests-container {
+        grid-template-columns: 1fr;
+        gap: 4vw;
+        margin-top: 4vw;
+    }
+
+    .interest-card {
+        padding: 5vw;
+    }
+
+    .interest-icon {
+        font-size: 12vw;
+        margin-bottom: 3vw;
+    }
+
+    .interest-card h4 {
+        font-size: 5.5vw;
+        margin-bottom: 3vw;
+    }
+
+    .interest-card p {
+        font-size: 3.8vw;
+        line-height: 5.5vw;
+    }
+
+    /* Contact Section */
+    .contact h6 {
+        font-size: 9vw;
+    }
+
+    .contact p {
+        font-size: 4vw;
+        padding-top: 3vw;
+        margin-bottom: 5vw;
+    }
+
+    .last-row {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 6vw;
+    }
+
+    .conbox {
+        margin-bottom: 5vw;
+    }
+
+    .concard {
+        height: 12vw;
+        width: 12vw;
+        font-size: 5vw;
+        margin: 0 3vw;
+    }
+
+    .toTop {
+        position: fixed;
+        height: 14vw;
+        width: 14vw;
+        font-size: 7vw;
+        bottom: 5vw;
+        right: 5vw;
+    }
+
+    .copyright {
+        font-size: 3vw;
+        letter-spacing: 0.2vw;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 90%;
+        padding: 5%;
+    }
+
+    .close {
+        top: 5%;
+        right: 5%;
+        font-size: 10vw;
+    }
+}
+
+/* Tablet specific adjustments */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .logo img {
+        width: 5vw;
+        height: 4.5vw;
+    }
+
+    nav ul li a {
+        font-size: 1.8vw;
+        padding: 0.8vw 1.5vw;
+    }
+
+    .cover-content h1 {
+        font-size: 7vw;
+    }
+
+    .cover-content h3 {
+        font-size: 2.5vw;
+    }
+
+    .about-content {
+        width: 90%;
+    }
+
+    .project-card {
+        width: 45%;
+    }
+
+    .edu-card {
+        width: 35vw;
+    }
+
+    .featured-card {
+        padding: 3vw;
     }
 }
